@@ -45,7 +45,7 @@
 
 #### 1.4.2 Redis
 
-![](image\2_zD1nWTB8pS.png)
+![](image/2_zD1nWTB8pS.png)
 
 1 几乎覆盖了Memcached的绝大部分功能
 
@@ -57,7 +57,7 @@
 
 #### 1.4.3 MongoDB
 
-![](image\3_DXOckvzGcV.png)
+![](image/3_DXOckvzGcV.png)
 
 1 高性能、开源、模式自由(schema free)的**文档型数据库**
 
@@ -75,7 +75,7 @@
 
 查看连接[**http://db-engines.com/en/ranking**](http://db-engines.com/en/ranking "http://db-engines.com/en/ranking")
 
-![image-20230627115200495](image\image-20230627115200495.png)
+![image-20230627115200495](image/image-20230627115200495.png)
 
 
 
@@ -107,11 +107,11 @@
 
 1 高频次，热门访问的数据，降低数据库IO
 
-![](image\h9_KHaeI98xIn.png)
+![](image/h9_KHaeI98xIn.png)
 
 ### 1.2 多样的数据结构存储持久化数据
 
-![](image\h10_RMycEgflpU.png)
+![](image/h10_RMycEgflpU.png)
 
 
 
@@ -125,11 +125,11 @@
 | ----------------- | ------------------------------------------------------------ |
 | https://redis.io/ | [https://www.redis.net.cn](https://www.redis.net.cn/)<br />https://www.redisio.com/ |
 
-![image-20230627115445004](image\image-20230627115445004.png)
+![image-20230627115445004](image/image-20230627115445004.png)
 
 
 
-![image-20230627115514919](image\image-20230627115514919.png)
+![image-20230627115514919](image/image-20230627115514919.png)
 
 ### 2.2 Redis安装
 
@@ -137,10 +137,10 @@
 
 - 7. 0.10 for Linux（redis-7.0.10.tar.gz）或者安装新版本
 
-  ![image-20230627115822984](image\image-20230627115822984.png)
+  ![image-20230627115822984](image/image-20230627115822984.png)
 -   不用考虑在windows环境下对Redis的支持
 
-![](image\r3_ZbbjGyf50w.png)
+![](image/r3_ZbbjGyf50w.png)
 
 > 第二步 下载安装最新版本的gcc编译器
 
@@ -156,7 +156,7 @@
   gcc --version
   ```
 
-  ![](image\r4_yy-zDaF8fI.png)
+  ![](image/r4_yy-zDaF8fI.png)
 
 > 第三步 上传redis-7.0.10.tar.gz放/opt目录
 
@@ -169,21 +169,21 @@
 - 如果没有准备好C语言编译环境，make 会报错
 
   -   Jemalloc/jemalloc.h：没有那个文件
-      ![](image\r5_7hJkvtN7Ei.png)
+      ![](image/r5_7hJkvtN7Ei.png)
   -   此时解决方案:运行make distclean
 
   ```纯文本
   make distclean
   ```
 
-  ![](image\r6_XYBfZILlLQ.png)
+  ![](image/r6_XYBfZILlLQ.png)
 
   -   安装好 gcc后再次make
-      ![](image\r7_E9OzTv8geu.png)
+      ![](image/r7_E9OzTv8geu.png)
 
 > 第七步 跳过make test,继续执行make install
 
-![](image\r8_HUpdPPasWH.png)
+![](image/r8_HUpdPPasWH.png)
 
 ### 2.3 Redis的启动和停止
 
@@ -323,7 +323,7 @@ Redis 之所以快速，是由于以下几个关键因素：
 
 需要注意的是，多路 I/O 复用对于 Redis 等单线程模型的数据库是非常适用的，但对于多线程或多进程的数据库，可能采用其他并发处理策略。
 
-![image-20230706100628816](image\image-20230706100628816.png)
+![image-20230706100628816](image/image-20230706100628816.png)
 
 
 
@@ -417,7 +417,7 @@ redis的存储时 key-value形式的,这里的五大类型指的是 value的五�
 
 String的数据结构为简单动态字符串(Simple Dynamic String,缩写SDS)。是可以修改的字符串，内部结构实现上类似于Java的ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配.
 
-![](image\t2_PyJD5svSPN.png)
+![](image/t2_PyJD5svSPN.png)
 
 如图中所示，内部为当前字符串实际分配的空间capacity一般要高于实际字符串长度len。当字符串长度小于1M时，扩容都是加倍现有的空间，如果超过1M，扩容时一次只会多扩1M的空间。需要注意的是字符串最大长度为512M。
 
@@ -429,7 +429,7 @@ String的数据结构为简单动态字符串(Simple Dynamic String,缩写SDS)�
 
 单键多值, 一个键下的value是一个List.Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。它的底层实际是个双向链表，对两端的操作性能很高，通过索引下标的操作中间的节点性能会较差。
 
-![](image\t3_-u-scVSY5m.png)
+![](image/t3_-u-scVSY5m.png)
 
 ### 3.2 常用命令
 
@@ -451,7 +451,7 @@ String的数据结构为简单动态字符串(Simple Dynamic String,缩写SDS)�
 
 List的数据结构为快速链表quickList。首先在列表元素较少的情况下会使用一块连续的内存存储，这个结构是ziplist，也即是压缩列表。它将所有的元素紧挨着一起存储，分配的是一块连续的内存。当数据量比较多的时候才会改成quicklist。因为普通的链表需要的附加指针空间太大，会比较浪费空间。比如这个列表里存的只是int类型的数据，结构上还需要两个额外的指针prev和next。
 
-![](image\t4_m8O96K0uZ0.png)
+![](image/t4_m8O96K0uZ0.png)
 
 Redis将链表和ziplist结合起来组成了quicklist。也就是将多个ziplist使用双向指针串起来使用。这样既满足了快速的插入删除性能，又不会出现太大的空间冗余。
 
@@ -496,15 +496,15 @@ Redis hash 是一个键值对集合。Redis hash是一个string类型的field和
 
 - 方式1  单key+序列化 .问题:每次修改用户的某个属性需要，先反序列化改好后再序列化回去。开销较大。
 
-  ![image-20230706110321231](image\image-20230706110321231.png)
+  ![image-20230706110321231](image/image-20230706110321231.png)
 
 - 方式2 多key-value .问题:用户ID数据冗余 &#x20;
 
-  ![image-20230706110341117](image\image-20230706110341117.png)
+  ![image-20230706110341117](image/image-20230706110341117.png)
 
 - 方式3 单key + 多(field+value)
 
-![image-20230706110256007](image\image-20230706110256007.png)
+![image-20230706110256007](image/image-20230706110256007.png)
 
 * **通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题**&#x20;
 
@@ -549,7 +549,7 @@ Redis有序集合zset与普通集合set非常相似，是一个没有重复元�
 
 案例：如何利用zset实现一个文章访问量的排行榜？
 
-![](image\r1_p0CpjaSfLZ.png)
+![](image/r1_p0CpjaSfLZ.png)
 
 ### 6.3 数据结构
 
@@ -880,7 +880,7 @@ https://spring.io/projects/spring-data-redis
 
 ## 5.2 创建工程
 
-![image-20230627195300172](image\image-20230627195300172.png)
+![image-20230627195300172](image/image-20230627195300172.png)
 
 
 
@@ -1025,11 +1025,11 @@ public class SpringBootRedisTest {
 
 1. 问题演示和解释
 
-   ![1698138932563](image\1698138932563.png)
+   ![1698138932563](image/1698138932563.png)
 
    我们发现,代码存储key="name"到了redis变了样,这是因为redis有自带的序列化器转化的时的问题!
 
-   ![1698140064929](image\1698140064929.png)
+   ![1698140064929](image/1698140064929.png)
 
    序列化器配置位置和默认配置代码:
 
@@ -1241,13 +1241,13 @@ public class SpringRedisTest {
 默认情况bind=127.0.0.1只能接受本机的访问请求,不写的情况下，无限制接受任何ip地址的访问,生产环境肯定要写你应用服务器的地址；服务器是需要远程访问的，所以需要将其注释掉.如果开启了protected-mode，那么在没有设定bind ip且没有设密码的情况下，Redis只允许接受本机的响应
 ```
 
-![image-20230706115102403](image\image-20230706115102403.png)
+![image-20230706115102403](image/image-20230706115102403.png)
 
 ```纯文本
 保存配置，停止服务，重启启动查看进程，不再限制是本机访问了。
 ```
 
-![image-20230706115212609](image\image-20230706115212609.png)
+![image-20230706115212609](image/image-20230706115212609.png)
 
 ```纯文本
 这里完成之后,就可以在window上安装一个redis客户端,连接虚拟机上的redis服务了
@@ -1257,7 +1257,7 @@ public class SpringRedisTest {
 
 ### （2） 端口号： 6379
 
-![image-20230706115349569](image\image-20230706115349569.png)
+![image-20230706115349569](image/image-20230706115349569.png)
 
 
 
@@ -1269,7 +1269,7 @@ public class SpringRedisTest {
 ​  注意Linux内核会将这个值减小到/proc/sys/net/core/somaxconn的值（128），所以需要确认增大/proc/sys/net/core/somaxconn和/proc/sys/net/ipv4/tcp_max_syn_backlog（128）两个值来达到想要的效果
 ```
 
-![image-20230706115554212](image\image-20230706115554212.png)
+![image-20230706115554212](image/image-20230706115554212.png)
 
 
 
@@ -1279,7 +1279,7 @@ public class SpringRedisTest {
 一个空闲的客户端维持多少秒会关闭，0表示关闭该功能。即永不关闭。
 ```
 
-![image-20230706115650664](image\image-20230706115650664.png)
+![image-20230706115650664](image/image-20230706115650664.png)
 
 
 
@@ -1290,7 +1290,7 @@ public class SpringRedisTest {
 单位为秒，如果设置为0 则不会进行Keepalive检测，建议设置成60  
 ```
 
-![image-20230706115754570](image\image-20230706115754570.png)
+![image-20230706115754570](image/image-20230706115754570.png)
 
 
 
@@ -1302,7 +1302,7 @@ public class SpringRedisTest {
  配置大小单位,开头定义了一些基本的度量单位，只支持bytes，不支持bit,大小写不敏感
 ```
 
-![image-20230706120047530](image\image-20230706120047530.png)
+![image-20230706120047530](image/image-20230706120047530.png)
 
 
 
@@ -1312,7 +1312,7 @@ public class SpringRedisTest {
 在当前配置文件中引入其他配置文件中的内容,一般都是引入一些公共配置
 ```
 
-![image-20230706120131180](image\image-20230706120131180.png)
+![image-20230706120131180](image/image-20230706120131180.png)
 
 
 
@@ -1322,7 +1322,7 @@ public class SpringRedisTest {
 是否为后台进程，设置为yes ,守护进程，后台启动
 ```
 
-![image-20230706120319825](image\image-20230706120319825.png)
+![image-20230706120319825](image/image-20230706120319825.png)
 
 
 
@@ -1332,7 +1332,7 @@ public class SpringRedisTest {
 存放pid文件的位置，每个实例会产生一个不同的pid文件
 ```
 
-![image-20230706120451425](image\image-20230706120451425.png)
+![image-20230706120451425](image/image-20230706120451425.png)
 
 
 
@@ -1342,7 +1342,7 @@ public class SpringRedisTest {
 设定库的数量 默认16，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id
 ```
 
-![image-20230706120627340](image\image-20230706120627340.png)
+![image-20230706120627340](image/image-20230706120627340.png)
 
 
 
@@ -1350,7 +1350,7 @@ public class SpringRedisTest {
 
 > 1 设置密码
 
-![image-20230706120811624](image\image-20230706120811624.png)
+![image-20230706120811624](image/image-20230706120811624.png)
 
 ```纯文本
 访问密码的查看、设置和取消
@@ -1358,11 +1358,11 @@ public class SpringRedisTest {
 永久设置，需要再配置文件中进行设置。
 ```
 
-![image-20230706121200103](image\image-20230706121200103.png)
+![image-20230706121200103](image/image-20230706121200103.png)
 
 **重新连接客户端测试**
 
-![image-20230706121253744](image\image-20230706121253744.png)
+![image-20230706121253744](image/image-20230706121253744.png)
 
 
 
@@ -1374,7 +1374,7 @@ public class SpringRedisTest {
 -   默认情况下为10000个客户端。
 -   如果达到了此限制，redis则会拒绝新的连接请求，并且向这些连接请求方发出“max number of clients reached”以作回应。
 
-![image-20230706121546036](image\image-20230706121546036.png)
+![image-20230706121546036](image/image-20230706121546036.png)
 
 
 
@@ -1385,7 +1385,7 @@ public class SpringRedisTest {
 -   如果redis无法根据移除规则来移除内存中的数据，或者设置了“不允许移除”，那么redis则会针对那些需要申请内存的指令返回错误信息，比如SET、LPUSH等。
 -   但是对于无内存申请的指令，仍然会正常响应，比如GET等。如果你的redis是主redis（说明你的redis有从redis），那么在设置内存使用上限时，需要在系统中留出一些内存空间给同步队列缓存，只有在你设置的是“不移除”的情况下，才不用考虑这个因素。
 
-![image-20230706121729584](image\image-20230706121729584.png)
+![image-20230706121729584](image/image-20230706121729584.png)
 
 
 
@@ -1405,7 +1405,7 @@ public class SpringRedisTest {
 
 `maxmemory-policy` 可根据您的具体需求进行配置，选择适合您应用程序的置换策略。请注意，设置不当的策略可能会导致数据丢失或性能问题，因此建议根据具体场景进行测试和评估。
 
-![image-20230706121843454](image\image-20230706121843454.png)
+![image-20230706121843454](image/image-20230706121843454.png)
 
 
 
@@ -1414,7 +1414,7 @@ public class SpringRedisTest {
 -   设置样本数量，LRU算法和最小TTL算法都并非是精确的算法，而是估算值，所以你可以设置样本的大小，redis默认会检查这么多个key并选择其中LRU的那个。
 -   一般设置3到7的数字，数值越小样本越不准确，但性能消耗越小。
 
-![image-20230706122145032](image\image-20230706122145032.png)
+![image-20230706122145032](image/image-20230706122145032.png)
 
 -   设置为 10，那么 Redis 将会增加额外的 CPU 开销以保证接近真正的 LRU 性能
 
@@ -1452,11 +1452,11 @@ public class SpringRedisTest {
 从输入Multi命令开始，输入的命令都会依次进入命令队列中，但不会执行，直到输入Exec后，Redis会将之前的命令队列中的命令依次执行。组队的过程中可以通过discard取消组队
 ```
 
-![](image\图片_j3Vmrz98DG.png)
+![](image/图片_j3Vmrz98DG.png)
 
 > 情况1 ,组队成功,提交成功
 
-![image-20230706135508396](image\image-20230706135508396.png)
+![image-20230706135508396](image/image-20230706135508396.png)
 
 
 
@@ -1464,17 +1464,17 @@ public class SpringRedisTest {
 
 > 情况2,组队报错,提交失败：提交失败组队中某个命令出现了报告错误，执行时整个的所有队列都会被取消
 
-![](image\图片_RO0ZBPMI7z.png)
+![](image/图片_RO0ZBPMI7z.png)
 
-![image-20230706135937567](image\image-20230706135937567.png)
+![image-20230706135937567](image/image-20230706135937567.png)
 
 
 
 > 情况3, 组队成功,提交时有成功有失败。如果执行阶段某个命令报出了错误，则只有报错的命令不会被执行，其他的命令都会执行，不会回滚。
 
-![](image\图片_34Jqqsr3Gw.png)
+![](image/图片_34Jqqsr3Gw.png)
 
-![image-20230706140338715](image\image-20230706140338715.png)
+![image-20230706140338715](image/image-20230706140338715.png)
 
 
 
@@ -1489,7 +1489,7 @@ public class SpringRedisTest {
 一个请求想给金额减1000
 ```
 
-![](image\图片_mhYf7Haj0b.png)
+![](image/图片_mhYf7Haj0b.png)
 
 > **悲观锁**
 
@@ -1497,7 +1497,7 @@ public class SpringRedisTest {
 悲观锁(Pessimistic Lock), 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。
 ```
 
-![](image\图片_AZCbv_l8bV.png)
+![](image/图片_AZCbv_l8bV.png)
 
 > **乐观锁**
 
@@ -1505,7 +1505,7 @@ public class SpringRedisTest {
 乐观锁(Optimistic Lock), 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量。Redis就是利用这种check-and-set机制实现事务的。
 ```
 
-![](image\图片_dAWahkQ1CZ.png)
+![](image/图片_dAWahkQ1CZ.png)
 
 > **监视和取消监视key**
 
@@ -1513,7 +1513,7 @@ public class SpringRedisTest {
 在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个) key ，如果在事务**执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。**
 ```
 
-![image-20230706141601678](image\image-20230706141601678.png)
+![image-20230706141601678](image/image-20230706141601678.png)
 
 ```纯文本
 取消 WATCH 命令对所有 key 的监视。如果在执行 WATCH 命令之后，EXEC 命令或DISCARD 命令先被执行了的话，那么就不需要再执行UNWATCH 了。 
@@ -1573,7 +1573,7 @@ public void performTransaction() {
 
 > 什么是LUA脚本
 
-![](image\图片_g1e6OrgrfS.png)
+![](image/图片_g1e6OrgrfS.png)
 
 ```text
 Lua 是一个小巧的[脚本语言](http://baike.baidu.com/item/脚本语言)，Lua脚本可以很容易的被C/C++ 代码调用，也可以反过来调用C/C++的函数，Lua并没有提供强大的库，一个完整的Lua解释器不过200k，所以Lua不适合作为开发独立应用程序的语言，而是作为嵌入式脚本语言。很多应用程序、游戏使用LUA作为自己的嵌入式脚本语言，以此来实现可配置性、可扩展性。这其中包括魔兽争霸地图、魔兽世界、博德之门、愤怒的小鸟等众多游戏插件或外挂。
@@ -1586,13 +1586,13 @@ Lua 是一个小巧的[脚本语言](http://baike.baidu.com/item/脚本语言)�
 LUA脚本是类似redis事务，有一定的原子性，不会被其他命令插队，可以完成一些redis事务性的操作。但是注意redis的lua脚本功能，只有在Redis 2.6以上的版本才可以使用。利用lua脚本淘汰用户，解决超卖问题。redis 2.6版本以后，通过lua脚本解决争抢问题，实际上是redis利用其单线程的特性，用任务队列的方式解决多任务并发问题。
 ```
 
-![](image\图片_XF01-BEOSG.png)
+![](image/图片_XF01-BEOSG.png)
 
 
 
 ### 2.2 创建SpringBoot工程
 
-![image-20230706154943584](image\image-20230706154943584.png)
+![image-20230706154943584](image/image-20230706154943584.png)
 
 
 
@@ -1638,7 +1638,7 @@ spring.data.redis.port=6379
 
 创建文件夹lua，创建脚本文件test.lua
 
-![image-20230706155329622](image\image-20230706155329622.png)
+![image-20230706155329622](image/image-20230706155329622.png)
 
 > LUA脚本
 
@@ -1742,11 +1742,11 @@ public class TestLua {
 
 * RedisTemplate.execute说明
 
-![image-20230706160027980](image\image-20230706160027980.png)
+![image-20230706160027980](image/image-20230706160027980.png)
 
 **RedisTemplate.execute需要传入三个值**
 
-![image-20230706160201481](image\image-20230706160201481.png)
+![image-20230706160201481](image/image-20230706160201481.png)
 
 * **第一个参数 RedisScript script：** Lua脚本
 
@@ -1773,7 +1773,7 @@ public class TestLua {
 
 > 我们知道Redis是一个内存型数据库,内存的特性是掉电或者程序退出则不保存数据,但是经过实测我们发现,Redis重启服务后,之前存储的数据仍然在,那么这就是通过持久化的方式实现的.
 
-![](image\图片_EnqORY6CR7.png)
+![](image/图片_EnqORY6CR7.png)
 
 > Redis 提供了2个不同形式的持久化方式。
 
@@ -1799,7 +1799,7 @@ public class TestLua {
 
 > 在指定的时间间隔内将内存中的数据集快照写入磁盘,也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里.
 
-![](image\图片_8uzdIbhx32.png)
+![](image/图片_8uzdIbhx32.png)
 
 ### 2.2 RDB持久化流程
 
@@ -1815,7 +1815,7 @@ public class TestLua {
 
 > RDB持计划流程图
 
-![](image\图片_4Cx4ku1M0s.png)
+![](image/图片_4Cx4ku1M0s.png)
 
 ### 2.3 RDB相关配置与操作
 
@@ -1823,7 +1823,7 @@ public class TestLua {
 
 -   &#x20;在redis.conf中配置文件名称，默认为dump.rdb
 
-![image-20230706162436439](image\image-20230706162436439.png)
+![image-20230706162436439](image/image-20230706162436439.png)
 
 
 
@@ -1832,13 +1832,13 @@ public class TestLua {
 -   rdb文件的保存路径，也可以修改。默认为Redis启动时命令行所在的目录下.
 -   可以通过修改该配置,将RDB文件存到系统的制定目录下dir "/root/myredis/"
 
-![image-20230706162540821](image\image-20230706162540821.png)
+![image-20230706162540821](image/image-20230706162540821.png)
 
 
 
 > RDB自动执行快照策略
 
-![image-20230706162725781](image\image-20230706162725781.png)
+![image-20230706162725781](image/image-20230706162725781.png)
 
 -   save命令临时这只快照执行策略
     - 格式：save 秒钟 写操作次数 RDB是整个内存的压缩过的Snapshot，RDB的数据结构，可以配置复合的快照触发条件， 默认是1分钟至少1万个key发生变化，或5分钟至少100个key发生变化，或1个小时至少1个key发生变化。
@@ -1871,7 +1871,7 @@ public class TestLua {
     -   save ：使用主进程进行持久化指令,save时只管保存，其它不管，全部阻塞。手动保存。不建议。
     -   bgsave：Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求。
         可以通过lastsave 命令获取最后一次成功执行快照的时间
-        ![](image\图片_AP4xT1NwRH.png)
+        ![](image/图片_AP4xT1NwRH.png)
     
 -   flushall命令
     
@@ -1887,7 +1887,7 @@ public class TestLua {
 -   stop-writes-on-bgsave-error 配置
     -   当Redis无法写入磁盘的话，直接关掉Redis的写操作。推荐yes.
 
-![image-20230706162910097](image\image-20230706162910097.png)
+![image-20230706162910097](image/image-20230706162910097.png)
 
 
 
@@ -1895,7 +1895,7 @@ public class TestLua {
 
 -   rdbcompression配置
     -   对于存储到磁盘中的快照，可以设置是否进行压缩存储。如果是的话，redis会采用LZF算法进行压缩。如果你不想消耗CPU来进行压缩的话，可以设置为关闭此功能。推荐yes.
-        ![image-20230706163019916](image\image-20230706163019916.png)
+        ![image-20230706163019916](image/image-20230706163019916.png)
 
 
 
@@ -1904,7 +1904,7 @@ public class TestLua {
 -   rdbchecksum配置
     -   在存储快照后，还可以让redis使用CRC64算法来进行数据校验，但是这样做会增加大约10%的性能消耗，如果希望获取到最大的性能提升，可以关闭此功能.推荐yes.
 
-![image-20230706163056568](image\image-20230706163056568.png)
+![image-20230706163056568](image/image-20230706163056568.png)
 
 
 
@@ -1925,7 +1925,7 @@ public class TestLua {
 
 -   修改配置文件永久禁用
 
-![](image\图片_eoQ6gox1Ee.png)
+![](image/图片_eoQ6gox1Ee.png)
 
 -   通过指令临时禁用
 
@@ -1944,7 +1944,7 @@ public class TestLua {
 -   **节省磁盘空间**
 -   **恢复速度快**
 
-![](image\图片_EB6BePrSXM.png)
+![](image/图片_EB6BePrSXM.png)
 
 #### 2.4.2 劣势
 
@@ -1954,7 +1954,7 @@ public class TestLua {
 
 ### 2.5 RDB小总结
 
-![](image\图片_qRi1oHbjWT.png)
+![](image/图片_qRi1oHbjWT.png)
 
 
 
@@ -1974,7 +1974,7 @@ public class TestLua {
 
 （4）Redis服务重启时，会重新load加载AOF文件中的写操作达到数据恢复的目的；
 
-![](image\图片_9tVJtqcU_7.png)
+![](image/图片_9tVJtqcU_7.png)
 
 ### 3.3 AOF相关配置与操作
 
@@ -1982,7 +1982,7 @@ public class TestLua {
 
 -   可以在redis.conf中配置文件名称，默认为 appendonly.aof
 
-![image-20230706163701368](image\image-20230706163701368.png)
+![image-20230706163701368](image/image-20230706163701368.png)
 
 
 
@@ -1997,7 +1997,7 @@ incr：增量文件
 
 manifest：清单文件
 
-![image-20230706164947931](image\image-20230706164947931.png)
+![image-20230706164947931](image/image-20230706164947931.png)
 
 
 
@@ -2010,7 +2010,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 -   正常恢复数据
     - 修改默认的appendonly no，改为yes,开启AOF方式
     
-      ![image-20230706163851658](image\image-20230706163851658.png)
+      ![image-20230706163851658](image/image-20230706163851658.png)
     
     - 将有数据的aof文件复制一份保存到对应目录(查看目录：config get dir)
     
@@ -2031,7 +2031,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 > AOF同步频率设置
 
-![image-20230706164003278](image\image-20230706164003278.png)
+![image-20230706164003278](image/image-20230706164003278.png)
 
 -   appendfsync always
     
@@ -2055,7 +2055,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
   ```
   
 
-![](image\图片_9WJIX0nPEH.png)
+![](image/图片_9WJIX0nPEH.png)
 
 效果：
 
@@ -2134,11 +2134,11 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
   -   （4）子进程写完新的AOF文件后，向主进程发信号，父进程更新统计信息。
   -   （5）使用新的AOF文件覆盖旧的AOF文件，完成AOF重写。
 
-![](image\图片_5xlibdltGu.png)
+![](image/图片_5xlibdltGu.png)
 
 ### 3.4 AOF的优势
 
-![](image\图片_HVeT9o0cSb.png)
+![](image/图片_HVeT9o0cSb.png)
 
 -   备份机制更稳健，丢失数据概率更低。
 -   可读的日志文本，通过操作AOF稳健，可以处理误操作。
@@ -2152,7 +2152,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 ### 3.6 AOF小总结
 
-![](image\图片_-ENRph4c9q.png)
+![](image/图片_-ENRph4c9q.png)
 
 ### 3.7 持久化方案选择
 
@@ -2166,7 +2166,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 > 官网建议
 
-![](image\图片_DPRWQaWIxV.png)
+![](image/图片_DPRWQaWIxV.png)
 
 - RDB持久化方式能够在指定的时间间隔能对你的数据进行快照存储
 
@@ -2214,7 +2214,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 -   读写分离，性能扩展
 -   容灾快速恢复
 
-![](image\图片_ouTt3xfpGK.png)
+![](image/图片_ouTt3xfpGK.png)
 
 
 
@@ -2248,7 +2248,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
   关闭aof功能
   
-  ![image-20230706184344365](image\image-20230706184344365.png)
+  ![image-20230706184344365](image/image-20230706184344365.png)
   
   ```纯文本
   include /root/myredis/redis.conf
@@ -2257,7 +2257,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
   dbfilename dump6379.rdb
   ```
   
-  ![](image\图片_3F9OYl-6g2.png)
+  ![](image/图片_3F9OYl-6g2.png)
   
   -   含义介绍
   
@@ -2272,11 +2272,11 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 - 新建redis6380.conf
 
-  ![](image\图片_oDvKOz3DIQ.png)
+  ![](image/图片_oDvKOz3DIQ.png)
 
 - 新建redis6381.conf
 
-  ![](image\图片_9MBKy-BD_t.png)
+  ![](image/图片_9MBKy-BD_t.png)
 
   -   在redis6381中多添加一个配置,设置从机的优先级，值越小，优先级越高，用于选举主机时使用。默认100
 
@@ -2288,13 +2288,13 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 ### （4）启动三个服务
 
-![image-20230706185404340](image\image-20230706185404340.png)
+![image-20230706185404340](image/image-20230706185404340.png)
 
 
 
 ### （5）查看启动服务进程
 
-![image-20230706185335546](image\image-20230706185335546.png)
+![image-20230706185335546](image/image-20230706185335546.png)
 
 
 
@@ -2303,7 +2303,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 * 连接redis，使用：redis-cli -p 端口号
 * 执行 info replication查看信息
 
-![image-20230706185249563](image\image-20230706185249563.png)
+![image-20230706185249563](image/image-20230706185249563.png)
 
 
 
@@ -2319,7 +2319,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 - 执行完毕再次查看主从配置信息
 
-  ![image-20230706185658801](image\image-20230706185658801.png)
+  ![image-20230706185658801](image/image-20230706185658801.png)
 
 
 
@@ -2329,7 +2329,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 - 在从机上写数据报错
 
-  ![](image\图片_GQz6WElSh0.png)
+  ![](image/图片_GQz6WElSh0.png)
 
 - 主机宕机,重启即可恢复主从状态,无需其他操作
 
@@ -2347,7 +2347,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 -   增量复制：Master继续将新的所有收集到的修改命令依次传给slave,完成同步
 -   但是只要是重新连接master,一次全量同步（全量复制)将被自动执行
 
-![](image\图片_ARh2hxM4BZ.png)
+![](image/图片_ARh2hxM4BZ.png)
 
 
 
@@ -2361,7 +2361,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 -   问题4:主机又回来了后，主机新增记录，从机还能否顺利复制？ [可以]
 -   问题5:其中一台从机down后情况如何？依照原有它能跟上大部队吗(还会自动变为从机吗?)？ [15 断了在连一下slaveof ]
 
-![](image\图片_r1ItTkr3yQ.png)
+![](image/图片_r1ItTkr3yQ.png)
 
 > 第二种 薪火相传
 
@@ -2370,13 +2370,13 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 ​中途变更转向:会清除之前的数据，重新建立拷贝最新的,风险是一旦某个slave宕机，后面的slave都没法备份,主机挂了，从机还是从机，无法写数据了
 ```
 
-![](image\图片_Ph7uZJfPCr.png)
+![](image/图片_Ph7uZJfPCr.png)
 
 > 第三种 反客为主
 
 -   当一个master宕机后，后面的slave可以立刻升为master，其后面的slave不用做任何修改。用 slaveof no one  将从机变为主机。
 
-![](image\图片_b9dFKRgmDO.png)
+![](image/图片_b9dFKRgmDO.png)
 
 ## 第六节 哨兵模式
 
@@ -2390,7 +2390,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 #### （1）第一步: 设置简单的一主二仆
 
-![](image\图片_P-N3sLBZXe.png)
+![](image/图片_P-N3sLBZXe.png)
 
 
 
@@ -2422,7 +2422,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
  	当主机宕机,会从从机中选择一个作为新的主机,根据优先级slave-properity, 原主机重启后会成为从机
 
-![image-20230706190854461](image\image-20230706190854461.png)
+![image-20230706190854461](image/image-20230706190854461.png)
 
 
 
@@ -2444,7 +2444,7 @@ AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同
 
 -   每个redis实例启动后都会随机生成一个40位的runid
 
-![](image\图片_ZAx9ym8HMa.png)
+![](image/图片_ZAx9ym8HMa.png)
 
 
 
@@ -2613,17 +2613,17 @@ public class RedisTemplateConfig {
   创建一个配置文件后,进行复制即可,然后再vim下,通过 :%s/6379/目标端口 来批量替换每个配置文件中的端口号
   ```
 
-  ![image-20230706200218897](image\image-20230706200218897.png)
+  ![image-20230706200218897](image/image-20230706200218897.png)
 
 
 
 ### （3）第三步,启动六个服务
 
-![image-20230706200143345](image\image-20230706200143345.png)
+![image-20230706200143345](image/image-20230706200143345.png)
 
 -   组合之前，请确保所有redis实例启动后，nodes-xxxx.conf文件都生成正常。
 
-![image-20230706200315643](image\image-20230706200315643.png)
+![image-20230706200315643](image/image-20230706200315643.png)
 
 
 
@@ -2645,11 +2645,11 @@ public class RedisTemplateConfig {
 
   **此处不要用127.0.0.1， 请用真实IP地址    --replicas 1 采用最简单的方式配置集群，一台主机，一台从机，正好三组。**
 
-![image-20230706200816752](image\image-20230706200816752.png)
+![image-20230706200816752](image/image-20230706200816752.png)
 
 输入 yes 继续
 
-![image-20230706200954694](image\image-20230706200954694.png)
+![image-20230706200954694](image/image-20230706200954694.png)
 
 
 
@@ -2657,7 +2657,7 @@ public class RedisTemplateConfig {
 
 ### （1）集群登录方式
 
-![](image\图片_afL9Hz385B.png)
+![](image/图片_afL9Hz385B.png)
 
 -   登录指令添加 -c 代表以集群方式登录
 
@@ -2674,13 +2674,13 @@ public class RedisTemplateConfig {
   ```
 
 
-![image-20230706201216761](image\image-20230706201216761.png)
+![image-20230706201216761](image/image-20230706201216761.png)
 
 
 
 ## 9.5 集群的slots
 
-![image-20230706201426691](image\image-20230706201426691.png)
+![image-20230706201426691](image/image-20230706201426691.png)
 
 -   一个 Redis 集群包含 16384 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个，
 -   集群使用公式 CRC16(key) % 16384 来计算键 key 属于哪个槽， 其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和 。
@@ -2697,7 +2697,7 @@ public class RedisTemplateConfig {
 -   redis-cli客户端提供了 –c 参数实现自动重定向。
 -   如 redis-cli -c –p 6379 登入后，再录入、查询键值对可以自动重定向。
 
-![image-20230706201647379](image\image-20230706201647379.png)
+![image-20230706201647379](image/image-20230706201647379.png)
 
 
 
@@ -2705,7 +2705,7 @@ public class RedisTemplateConfig {
 
 -   可以通过{}来定义组的概念，从而使key中{}内相同内容的键值对放到一个slot中去。
 
-![image-20230706201756159](image\image-20230706201756159.png)
+![image-20230706201756159](image/image-20230706201756159.png)
 
 
 
@@ -2715,7 +2715,7 @@ public class RedisTemplateConfig {
 -   cluster countkeysinslot slot的值 计算某个插槽中保存的key的数量
 -   CLUSTER GETKEYSINSLOT \<slot>\<count> 返回 count 个 slot 槽中的键。
 
-![image-20230706202007674](image\image-20230706202007674.png)
+![image-20230706202007674](image/image-20230706202007674.png)
 
 
 
@@ -2723,11 +2723,11 @@ public class RedisTemplateConfig {
 
 -   如果主节点下线？从节点能否自动升为主节点？注意：**15秒超时**
 
-![image-20230706202459470](image\image-20230706202459470.png)
+![image-20230706202459470](image/image-20230706202459470.png)
 
 -   主节点恢复后，主从关系会如何？主节点回来变成从机。
 
-![image-20230706202640635](image\image-20230706202640635.png)
+![image-20230706202640635](image/image-20230706202640635.png)
 
 -   如果所有某一段插槽的主从节点都宕掉，redis服务是否还能继续?
     -   redis.conf中cluster-require-full-coverage 为yes 那么 ，整个集群都挂掉
