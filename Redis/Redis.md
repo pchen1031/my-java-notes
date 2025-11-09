@@ -33,7 +33,7 @@
 
 #### 1.4.1 Memcached
 
-![](image\1_ZAenux9BxO.png)
+![](image/1_ZAenux9BxO.png)
 
 1 很早出现的NoSql数据库
 
