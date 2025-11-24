@@ -112,7 +112,7 @@ WHERE last_name LIKE 'a%';#此时是查询以a开头的
 #练习：查询查询last_name中包含字符'a'并且包含'e'的员工信息
 SELECT last_name
 FROM employees
-WHERE last_name LIKE '%a%e' OR last_name LIKE '%e%%a';#如果只写WHERE last_name LIKE '%a%e'的话是字符'a'并且包含'e'但是必须是a在前e在后
+WHERE last_name LIKE '%a%e%' OR last_name LIKE '%e%a%';#如果只写WHERE last_name LIKE '%a%e'的话是字符'a'并且包含'e'但是必须是a在前e在后
 
 SELECT last_name
 FROM employees
